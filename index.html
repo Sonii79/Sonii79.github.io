@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soni Sowbhagya | SDE Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth;}
+  :root{
+    --bg:#fff6f6;
+    --bg-alt:#ffffff;
+    --text:#161721;
+    --text-soft:#4a4a68;
+    --accent:#6c63ff;
+    --accent-soft:#ede9ff;
+    --card-shadow:0 2px 10px rgba(65,50,153,0.08);
+    --border:#eee6ff;
+  }
+  [data-theme="dark"]{
+    --bg:#0d0d17;
+    --bg-alt:#1a1a2e;
+    --text:#f5f5f7;
+    --text-soft:#b4b4c7;
+    --accent:#a29bfe;
+    --accent-soft:#242440;
+    --card-shadow:0 2px 14px rgba(0,0,0,0.4);
+    --border:#2a2a45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;transition:background .3s ease,color .3s ease;line-height:1.6;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'Fira Code',monospace;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;position:sticky;top:0;background:var(--bg);z-index:30;border-bottom:1px solid var(--border);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .brand{font-weight:700;font-size:19px;color:var(--accent);}
+  .navlinks{display:flex;gap:26px;flex-wrap:wrap;}
+  .navlinks a{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--text-soft);transition:color .15s ease;}
+  .navlinks a i{color:var(--accent);font-size:13px;}
+  .navlinks a:hover,.navlinks a.active{color:var(--accent);}
+  .toggle-btn{background:var(--bg-alt);border:1px solid var(--border);border-radius:50px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--accent);font-size:15px;box-shadow:var(--card-shadow);transition:transform .2s ease;flex-shrink:0;}
+  .toggle-btn:hover{transform:scale(1.08);}
+  .burger{display:none;background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;width:40px;height:40px;align-items:center;justify-content:center;color:var(--accent);font-size:17px;cursor:pointer;flex-shrink:0;}
+
+  @media (max-width:760px){
+    .burger{display:flex;}
+    .navlinks{
+      position:fixed;
+      top:73px;left:0;right:0;
+      flex-direction:column;
+      background:var(--bg-alt);
+      border-bottom:1px solid var(--border);
+      padding:18px 28px;
+      gap:18px;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:max-height .3s ease, opacity .25s ease, padding .3s ease;
+      box-shadow:0 12px 24px rgba(0,0,0,0.08);
+    }
+    .navlinks.open{
+      max-height:320px;
+      opacity:1;
+      padding:18px 28px;
+    }
+    .navlinks a{font-size:15px;}
+  }
+
+  .hero{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:80px 0 60px;flex-wrap:wrap;}
+  .hero-text{flex:1;min-width:300px;}
+  .hero-text h1{font-size:2.5rem;font-weight:700;margin-bottom:14px;}
+  .hero-text h1 span{color:var(--accent);}
+  .hero-text p{color:var(--text-soft);font-size:1.05rem;max-width:540px;margin-bottom:28px;}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn-main{background:var(--accent);color:#fff;padding:13px 26px;border-radius:8px;font-weight:600;font-size:14px;box-shadow:0 6px 18px rgba(108,99,255,0.35);transition:transform .2s ease;}
+  .btn-main:hover{transform:translateY(-2px);}
+
+  .social-icons{display:flex;gap:14px;}
+  .social-icons a{
+    width:42px;height:42px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    font-size:17px;
+    box-shadow:var(--card-shadow);
+    transition:transform .2s ease;
+  }
+  .social-icons a:hover{transform:translateY(-3px);}
+  .social-icons a.linkedin{background:#0A66C2;}
+  .social-icons a.github{background:#181717;}
+  .social-icons a.email{background:#EA4335;}
+
+  .hero-orb{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--accent), var(--accent-soft));flex-shrink:0;box-shadow:0 20px 60px rgba(108,99,255,0.35);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fira Code',monospace;font-size:13px;text-align:center;}
+
+  section{padding:70px 0;}
+  .section-head{text-align:center;margin-bottom:46px;}
+  .section-head .eyebrow{font-family:'Fira Code',monospace;font-size:12px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;}
+  .section-head h2{font-size:1.9rem;font-weight:700;}
+
+  .skill-cat{margin-bottom:34px;}
+  .skill-cat:last-child{margin-bottom:0;}
+  .skill-cat .cat-label{font-family:'Fira Code',monospace;font-size:12px;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;text-align:center;}
+  .icon-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
+  .icon-chip{background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;width:74px;height:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-shadow:var(--card-shadow);transition:transform .2s ease;}
+  .icon-chip:hover{transform:translateY(-4px);}
+  .icon-chip i{font-size:22px;color:var(--accent);}
+  .icon-chip span{font-size:9.5px;color:var(--text-soft);text-align:center;}
+
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  @media (max-width:720px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:var(--card-shadow);transition:transform .2s ease;display:flex;flex-direction:column;}
+  .proj-card:hover{transform:translateY(-4px);}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+  .proj-card h3{font-size:1.1rem;}
+  .proj-date{font-family:'Fira Code',monospace;font-size:11px;color:var(--text-soft);white-space:nowrap;}
+  .proj-org{font-size:12px;color:var(--accent);margin-bottom:10px;font-weight:500;}
+  .proj-card ul{color:var(--text-soft);font-size:13.5px;margin:0 0 14px 18px;}
+  .proj-card ul li{margin-bottom:5px;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;margin-top:auto;}
+  .proj-tags span{font-size:11px;font-family:'Fira Code',monospace;background:var(--accent-soft);color:var(--accent);padding:4px 10px;border-radius:20px;}
+  .proj-links{display:flex;gap:16px;font-size:13px;}
+  .proj-links a{color:var(--accent);font-weight:500;}
+  .proj-links a:hover{text-decoration:underline;}
+
+  .contact-card{background:var(--accent);border-radius:18px;padding:50px;text-align:center;color:#fff;}
+  .contact-card h2{font-size:1.8rem;margin-bottom:10px;}
+  .contact-card p{opacity:0.9;margin-bottom:26px;}
+  .contact-card a.btn-white{background:#fff;color:var(--accent);padding:13px 28px;border-radius:8px;font-weight:600;display:inline-block;}
+
+  footer{text-align:center;padding:30px 0;color:var(--text-soft);font-size:12.5px;font-family:'Fira Code',monospace;}
+
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .hero{padding:50px 0 40px;flex-direction:column-reverse;text-align:center;}
+    .hero-text h1{font-size:2rem;}
+    .hero-text p{margin-left:auto;margin-right:auto;}
+    .hero-btns{justify-content:center;}
+    .hero-orb{width:150px;height:150px;font-size:11px;}
+    section{padding:50px 0;}
+    .section-head h2{font-size:1.6rem;}
+    .icon-chip{width:64px;height:64px;}
+    .icon-chip i{font-size:18px;}
+    .proj-card{padding:20px;}
+    .contact-card{padding:34px 24px;}
+  }
+</style>
+</head>
+<body data-theme="light">
+
+<nav class="wrap">
+  <div class="brand">Soni<span class="mono">.dev</span></div>
+  <div class="navlinks" id="navLinks">
+    <a href="#skills" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i>Skills</a>
+    <a href="#projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i>Projects</a>
+    <a href="#" id="resumeLink"><i class="fa-solid fa-file-lines"></i>Resume</a>
+    <a href="#contact" class="nav-link"><i class="fa-solid fa-phone-volume"></i>Contact Me</a>
+  </div>
+  <div class="nav-right">
+    <button class="toggle-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+    <button class="burger" id="burgerBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <div class="hero-text">
+    <h1>I'm <span>Soni Sowbhagya</span></h1>
+    <p>Third-year Aerospace Engineering undergrad at IIT Kanpur, building frontend interfaces and ML-driven projects — from disentangled deep learning models to interactive web apps. Currently exploring SDE roles.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-main">Download Resume</a>
+      <div class="social-icons">
+        <a class="linkedin" href="#" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a class="github" href="https://github.com/Sonii79" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.8 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.08.78 2.17v3.21c0 .31.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a class="email" href="mailto:kandolus24@iitk.ac.in" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-orb">IIT Kanpur<br>Aerospace Eng.<br>Class of 2028</div>
+</div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What I Work With</div>
+      <h2>Skills</h2>
+    </div>
+
+    <div class="skill-cat">
+      <div class="cat-label">Languages</div>
+      <div class="icon-grid">
+        <div class="icon-chip"><i class="fa-brands fa-python"></i><span>Python</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-code"></i><span>C++ / C</span></div>
+        <div class="icon-chip"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-mobile-screen"></i><span>Dart</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-database"></i><span>SQL</span></div>
+        <div class="icon-chip"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+        <div class="icon-chip"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+      </div>
+    </div>
+
+    <div class="skill-cat">
+      <div class="cat-label">Frameworks</div>
+      <div class="icon-grid">
+        <div class="icon-chip"><i class="fa-brands fa-flutter"></i><span>Flutter</span></div>
+      </div>
+    </div>
+
+    <div class="skill-cat">
+      <div class="cat-label">Libraries</div>
+      <div class="icon-grid">
+        <div class="icon-chip"><i class="fa-solid fa-square-root-variable"></i><span>NumPy</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-table"></i><span>Pandas</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-eye"></i><span>OpenCV</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-brain"></i><span>PyTorch</span></div>
+      </div>
+    </div>
+
+    <div class="skill-cat">
+      <div class="cat-label">Tools</div>
+      <div class="icon-grid">
+        <div class="icon-chip"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+        <div class="icon-chip"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-laptop-code"></i><span>VS Code</span></div>
+        <div class="icon-chip"><i class="fa-brands fa-google"></i><span>Colab</span></div>
+        <div class="icon-chip"><i class="fa-solid fa-file-invoice"></i><span>LaTeX</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Selected Work</div>
+      <h2>Projects</h2>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>DICE-FER</h3>
+          <span class="proj-date">May '26 – Present</span>
+        </div>
+        <div class="proj-org">EE656 Course Project · IIT Kanpur</div>
+        <ul>
+          <li>Built a facial expression recognition framework using three ResNet-18 encoders to extract disentangled 64-dim identity–expression embeddings</li>
+          <li>Trained on CK+48, RAF-DB, and AffectNet with ImageNet-pretrained backbones, Adam optimizer, and cosine annealing</li>
+          <li>Achieved 100.0% / 83.05% / 72.89% recognition accuracy across the three datasets</li>
+        </ul>
+        <div class="proj-tags"><span>PyTorch</span><span>ResNet-18</span><span>Computer Vision</span></div>
+        <div class="proj-links"><a href="#">GitHub →</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>Digitizing Entry with Flutter</h3>
+          <span class="proj-date">May '25 – Jul '25</span>
+        </div>
+        <div class="proj-org">Association of Computer Activities · IIT Kanpur</div>
+        <ul>
+          <li>Built scalable customer and admin apps for digital ticketing and water park operations using Flutter (Dart)</li>
+          <li>Integrated Firebase Auth, Firestore, Storage, and FCM for secure authentication and real-time updates</li>
+          <li>Shipped booking, digital ticket, payment, and loyalty modules with QR-based access</li>
+        </ul>
+        <div class="proj-tags"><span>Flutter</span><span>Firebase</span><span>Dart</span></div>
+        <div class="proj-links"><a href="#">GitHub →</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>ATS Scorer</h3>
+          <span class="proj-date">Self Project</span>
+        </div>
+        <div class="proj-org">Independent</div>
+        <ul>
+          <li>Built a web-based ATS resume analyzer scoring resumes against job descriptions</li>
+          <li>Compared resume keywords against job descriptions to surface compatibility scores and gaps</li>
+          <li>Used Local Storage for seamless data transfer across a multi-page analysis workflow</li>
+        </ul>
+        <div class="proj-tags"><span>JavaScript</span><span>HTML/CSS</span></div>
+        <div class="proj-links"><a href="#">GitHub →</a><a href="#">Live →</a></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>QueryQuest</h3>
+          <span class="proj-date">May '26 – Present</span>
+        </div>
+        <div class="proj-org">Association of Computer Activities · IIT Kanpur</div>
+        <ul>
+          <li>Designed ER diagrams and normalized relational schemas using draw.io and PostgreSQL</li>
+          <li>Wrote multi-table SQL queries using JOINs and window functions for reliable data retrieval</li>
+        </ul>
+        <div class="proj-tags"><span>PostgreSQL</span><span>SQL</span><span>Schema Design</span></div>
+        <div class="proj-links"><a href="#">GitHub →</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2>Let's build something</h2>
+      <p>Open to SDE internships and software roles — feel free to reach out at <a href="mailto:kandolus24@iitk.ac.in" style="text-decoration:underline;">kandolus24@iitk.ac.in</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">© 2026 Soni Sowbhagya</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  toggle.addEventListener('click', () => {
+    const isDark = body.getAttribute('data-theme') === 'dark';
+    body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    toggle.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+  });
+
+  // mobile menu
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const isOpen = navLinks.classList.contains('open');
+    burger.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  // highlight active section link while scrolling
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-link');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navAnchors.forEach(a => a.classList.remove('active'));
+        const match = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+
+</body>
+</html>
